@@ -33,7 +33,7 @@ public class CreateTreeNode {
                 node.left = new TreeNode(Integer.parseInt(arrs[i + 1]));
                 queue.offer(node.left);
             }
-            if(i + 2 < n && "null".equals(arrs[i + 2])){
+            if(i + 2 < n && !"null".equals(arrs[i + 2])){
                 node.right = new TreeNode(Integer.parseInt(arrs[i + 2]));
                 queue.offer(node.right);
             }

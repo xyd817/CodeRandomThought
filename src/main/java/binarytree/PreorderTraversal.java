@@ -32,6 +32,10 @@ public class PreorderTraversal {
 
     @Test
     public void test(){
+        String[] roots = {"1","null","2","3"};
+        TreeNode root = CreateTreeNode.createBinaryTree(roots);
+        List<Integer> list = preorderTraversal(root);
+        list.forEach(System.out::println);
 
     }
 
