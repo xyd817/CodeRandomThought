@@ -48,6 +48,34 @@ public class PreorderTraversal {
         }
         return ans;
     }
+
+    //使用统一的迭代法完成前序遍历
+    public List<Integer> preorderTraversal2(TreeNode root){
+        if(root == null){
+            return new ArrayList<>();
+        }
+        Deque<TreeNode> stack = new LinkedList<>();
+        List<Integer> ans = new ArrayList<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode node = stack.peek();
+            if(node != null){
+                stack.pop();
+                if(node.right != null){
+                    stack.push(node.right);
+                }
+                if(node.left != null){
+                    stack.push(node.left);
+                }
+                stack.push(node);
+                stack.push(null);
+            }else{
+                stack.pop();
+                ans.add(stack.pop().val);
+            }
+        }
+        return ans;
+    }
     @Test
     public void test(){
         String[] roots = {"1","null","2","3"};
