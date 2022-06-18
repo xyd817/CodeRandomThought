@@ -3,8 +3,7 @@ package binarytree;
 import org.junit.Test;
 
 import javax.print.DocFlavor;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * leetcode:145. 二叉树的后序遍历
@@ -26,11 +25,32 @@ public class PostorderTraversal {
         postorder(root.right,res);
         res.add(root.val);
     }
+    //使用迭代法完成后序遍历
+    public List<Integer> postorderTraversal1(TreeNode root){
+        if(root == null){
+            return new ArrayList<>();
+        }
+        Deque<TreeNode> stack = new LinkedList<>();
+        List<Integer> ans = new ArrayList<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            ans.add(node.val);
+            if(node.left != null){
+                stack.push(node.left);
+            }
+            if(node.right != null){
+                stack.push(node.right);
+            }
+        }
+        Collections.reverse(ans);
+        return ans;
+    }
     @Test
     public void test(){
         String[] roots = {"1","null","2","3"};
         TreeNode root = CreateTreeNode.createBinaryTree(roots);
-        List<Integer> list = postorderTraversal(root);
+        List<Integer> list = postorderTraversal1(root);
         list.forEach(System.out::println);
     }
 }
