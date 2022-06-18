@@ -50,6 +50,35 @@ public class InorderTraversal {
             }
         }
         return ans;
+    }
+    //使用统一的迭代法完成中序遍历
+    public List<Integer> inorderTraversal2(TreeNode root) {
+        if(root == null){
+            return new ArrayList<>();
+        }
+        Deque<TreeNode> stack = new LinkedList<>();
+        List<Integer> ans = new ArrayList<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode node = stack.peek();
+            if(node != null){
+                stack.pop();//弹出栈顶节点，避免重复
+                //还未处理过
+                if(node.right != null){
+                    stack.push(node.right);
+                }
+                stack.push(node);
+                stack.push(null);
+                if(node.left != null){
+                    stack.push(node.left);
+                }
+            }else{
+                //处理节点
+                stack.pop();
+                ans.add(stack.pop().val);
+            }
+        }
+        return ans;
 
     }
 
@@ -57,7 +86,7 @@ public class InorderTraversal {
     public void test() {
         String[] roots = {"1", "null", "2", "3"};
         TreeNode root = CreateTreeNode.createBinaryTree(roots);
-        List<Integer> list = inorderTraversal1(root);
+        List<Integer> list = inorderTraversal2(root);
         list.forEach(System.out::println);
     }
 
