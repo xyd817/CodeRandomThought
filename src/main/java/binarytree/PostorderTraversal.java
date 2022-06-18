@@ -46,6 +46,33 @@ public class PostorderTraversal {
         Collections.reverse(ans);
         return ans;
     }
+    //使用统一的迭代法完成后序遍历
+    public List<Integer> postorderTraversal2(TreeNode root){
+        if(root == null){
+            return new ArrayList<>();
+        }
+        Deque<TreeNode> stack = new LinkedList<>();
+        List<Integer> ans = new ArrayList<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode node = stack.peek();
+            if(node != null){
+                stack.push(null);
+                if(node.right != null){
+                    stack.push(node.right);
+                }
+                if(node.left != null){
+                    stack.push(node.left);
+                }
+
+            }else{
+                stack.pop();
+                ans.add(stack.pop().val);
+            }
+        }
+        return ans;
+
+    }
     @Test
     public void test(){
         String[] roots = {"1","null","2","3"};
