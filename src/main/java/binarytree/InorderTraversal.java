@@ -1,8 +1,11 @@
 package binarytree;
 
 import org.junit.Test;
+import scala.reflect.internal.Trees;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -28,11 +31,33 @@ public class InorderTraversal {
         inorder(root.right, res);
     }
 
+    //使用迭代法来完成中序遍历
+    public List<Integer> inorderTraversal1(TreeNode root) {
+        if(root == null){
+            return new ArrayList<>();
+        }
+        Deque<TreeNode> stack = new LinkedList<>();
+        List<Integer> ans = new ArrayList<>();
+        TreeNode cur = root;
+        while (cur != null || !stack.isEmpty()){
+            if(cur != null){
+                stack.push(cur);
+                cur = cur.left;//左
+            }else{
+                cur = stack.pop();
+                ans.add(cur.val);//处理中间节点
+                cur = cur.right;//右
+            }
+        }
+        return ans;
+
+    }
+
     @Test
     public void test() {
         String[] roots = {"1", "null", "2", "3"};
         TreeNode root = CreateTreeNode.createBinaryTree(roots);
-        List<Integer> list = inorderTraversal(root);
+        List<Integer> list = inorderTraversal1(root);
         list.forEach(System.out::println);
     }
 
