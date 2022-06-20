@@ -53,11 +53,11 @@ public class CreateTreeNode {
         while (!stack.isEmpty()){
             TreeNode node = stack.pop();
             System.out.print(node.val + " ");
-            if(node.left != null){
-                stack.push(node.left);
-            }
             if(node.right != null){
                 stack.push(node.right);
+            }
+            if(node.left != null){
+                stack.push(node.left);
             }
         }
     }
