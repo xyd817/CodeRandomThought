@@ -1,5 +1,6 @@
 package binarytree;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -40,5 +41,24 @@ public class CreateTreeNode {
             i++;
         }
         return root;
+    }
+
+    //前序遍历
+    public static void preOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        Deque<TreeNode> stack = new LinkedList<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            System.out.print(node.val + " ");
+            if(node.left != null){
+                stack.push(node.left);
+            }
+            if(node.right != null){
+                stack.push(node.right);
+            }
+        }
     }
 }
