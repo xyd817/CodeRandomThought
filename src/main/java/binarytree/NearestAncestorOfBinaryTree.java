@@ -35,24 +35,24 @@ public class NearestAncestorOfBinaryTree {
 
     @Test
     public void test() {
-        TreeNode a1 = new TreeNode(3);
-        TreeNode b1 = new TreeNode(5);
-        TreeNode b2 = new TreeNode(1);
+        TreeNode a1 = new TreeNode(6);
+        TreeNode b1 = new TreeNode(2);
+        TreeNode b2 = new TreeNode(8);
         a1.left = b1;
         a1.right = b2;
-        TreeNode c1 = new TreeNode(6);
-        TreeNode c2 = new TreeNode(2);
-        TreeNode c3 = new TreeNode(0);
-        TreeNode c4 = new TreeNode(8);
+        TreeNode c1 = new TreeNode(0);
+        TreeNode c2 = new TreeNode(4);
+        TreeNode c3 = new TreeNode(7);
+        TreeNode c4 = new TreeNode(9);
         b1.left = c1;
         b1.right = c2;
         b2.left = c3;
         b2.right = c4;
-        TreeNode d1 = new TreeNode(7);
-        TreeNode d2 = new TreeNode(4);
+        TreeNode d1 = new TreeNode(3);
+        TreeNode d2 = new TreeNode(5);
         c2.left = d1;
         c2.right = d2;
-        TreeNode p = c1, q = d2;
+        TreeNode p = b1, q = c3;
         TreeNode node = lowestCommonAncestor(a1, p, q);
         System.out.println(node.val);
 
