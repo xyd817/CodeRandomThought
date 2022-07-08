@@ -62,7 +62,7 @@ public class CreateTreeNode {
         }
     }
     //中序遍历
-    public void inorder(TreeNode root){
+    public static void inorder(TreeNode root){
         if(root == null){
             return;
         }
