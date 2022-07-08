@@ -61,4 +61,13 @@ public class CreateTreeNode {
             }
         }
     }
+    //中序遍历
+    public void inorder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        inorder(root.left);
+        System.out.print(root.val + " ");
+        inorder(root.right);
+    }
 }
