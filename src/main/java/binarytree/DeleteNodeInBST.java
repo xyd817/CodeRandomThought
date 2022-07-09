@@ -51,12 +51,33 @@ public class DeleteNodeInBST {
         }
         return root;
     }
+    //一般的二叉树删除节点
+    public TreeNode deleteNode1(TreeNode root, int key) {
+        if(root == null){
+            return null;
+        }
+        if(root.val == key){
+            if(root.right == null){
+                return root.left;
+            }
+            //寻找左子树的最小值
+            TreeNode node = root.right;
+            while (node.left != null){
+                node = node.left;
+            }
+            root.val = node.val;
+            node.val = key;
+        }
+        root.left = deleteNode(root.left,key);
+        root.right = deleteNode(root.right, key);
+        return root;
+    }
 
     @Test
     public void test(){
         String[] nums = {"5", "3", "6", "2", "4", "null", "7" };
         int key = 3;
-        TreeNode root = deleteNode(CreateTreeNode.createBinaryTree(nums), key);
+        TreeNode root = deleteNode1(CreateTreeNode.createBinaryTree(nums), key);
         CreateTreeNode.inorder(root);
     }
 }
