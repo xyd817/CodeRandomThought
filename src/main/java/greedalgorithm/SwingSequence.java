@@ -37,9 +37,26 @@ public class SwingSequence {
         return cnt;
     }
 
+    public int wiggleMaxLength1(int[] nums) {
+        if(nums.length <= 1) {
+            return 0;
+        }
+        int prediff = 0, curdiff = 0;
+        int count = 1;
+        for (int i = 0; i < nums.length - 1; i++) {
+            curdiff = nums[i+1] - nums[i];
+            if((curdiff > 0 && prediff <= 0 ) || (curdiff < 0 && prediff >= 0)) {
+                count += 1;
+            }
+            prediff = curdiff;
+        }
+        return count;
+    }
+
+
     @Test
     public void test() {
         int[] nums = {1, 17, 5, 10, 13, 15, 10, 5, 16, 8};
-        System.out.println(wiggleMaxLength(nums));
+        System.out.println(wiggleMaxLength1(nums));
     }
 }
